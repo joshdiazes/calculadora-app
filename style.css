@@ -2,7 +2,7 @@
 html{
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    background: rgb(114, 113, 113);
+    background: rgb(172, 168, 168);
     height: 100vh;
 }
 *,
@@ -20,18 +20,29 @@ body{
 }
 .calculadora{
     background: rgb(26, 26, 26);
+    box-shadow: 0 5px 30px rgba(0,0,0,1);
     border-radius: 12px;
     flex-basis: 400px;
-    height: 570px;
+    height: 590px;
 }
-.respuesta{
+.historial{
     background: rgb(70, 69, 69);
     border-radius: 12px 12px 0 0;
+    color: white;
+    padding: 5px 20px;
+    font-size: 12px;
+    overflow-y: auto;
+    text-align: left;
+    height: 30px;
+}
+.resultado{
+    background: rgb(70, 69, 69);
     color: white;
     font-size: 50px;
     overflow: auto;
     padding: 10px 20px;
     text-align: right;
+    height: 95px;
 }
 .calc-btns-row{
     display: flex;
