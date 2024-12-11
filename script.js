@@ -4,6 +4,13 @@ let previousOperator;
 
 const resultado = document.querySelector('.resultado');
 const historial = document.querySelector('.historial');
+
+// Falta:
+// Historial identifique el menos "−"
+// Hacer que el punto funcione despues hacer una operación
+// Hacer que '←' se actualice en el historial
+// Despues de una operación, si apreto un número que lo anterior se borre
+
 function buttonClick(valor){
     if(isNaN(valor)){
         handleOperador(valor);
@@ -11,7 +18,7 @@ function buttonClick(valor){
             updateHistorial(valor);
         }
         if(valor==='='){
-            clearHistorial();
+            updateHistorialRpta(buffer);
         }
     } else{
         handleNumero(valor);
@@ -48,14 +55,14 @@ function handleOperador(operador) {
         case '%':
             if (previousOperator ===null){
                 buffer=(parseFloat(buffer)/100).toString();
-                clearHistorial();
+                updateHistorialRpta(buffer);
             } else{
                 handleMath(operador);
                 clearHistorial();
             }
             break;
         case '+':
-        case '-':
+        case '−':
         case '×':
         case '÷':
             handleMath(operador);
@@ -66,6 +73,7 @@ function handleOperador(operador) {
 function handleDecimal(){
     if(!buffer.includes('.')){
         buffer+='.';
+        updateHistorialRpta(buffer);
     }
 }
 function handleMath(operador){
@@ -84,7 +92,7 @@ function handleMath(operador){
 function realizarOperacion(intBuffer){
     if(previousOperator==='+'){
         runningTotal+=intBuffer;
-    } else if(previousOperator==='-'){
+    } else if(previousOperator==='−'){
         runningTotal-=intBuffer; 
     } else if(previousOperator==='×'){
         runningTotal*=intBuffer; 
@@ -105,6 +113,9 @@ function handleNumero(numberString){
 }
 function updateHistorial(valor){
     historial.innerText += valor;
+}
+function updateHistorialRpta(valor){
+    historial.innerText = valor;
 }
 function clearHistorial(){
     historial.innerText = '';
